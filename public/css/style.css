@@ -1,0 +1,12 @@
+body {
+  text-align: center;
+  background-color: rgba(59, 0, 59, 0.568);
+}
+
+img {
+  max-width: 50vw;
+}
+
+ul {
+list-style: none;
+}
