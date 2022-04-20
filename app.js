@@ -21,18 +21,20 @@ app.use(express.static("public")); // we can use this to give the public access 
 app.get("/about", (req, res, next) => {
   // console.log(req.url)
   console.log("A request on the ABOUT page was received :)");
-  res.sendFile(__dirname + "/views/about.html"); // Sends the HTML file
+ // res.sendFile(__dirname + "/views/about.html"); // Sends the HTML file
+ res.render("about") //using handlebar to render the layout then add the details 
 });
+
 
 //each of these are called a route (app.get)
 app.get("/", (req, res, next) => {
   // console.log(req.url)
   console.log("A request on the HOME page was received :)");
-  res.sendFile(__dirname + "/views/home.html");
+  res.render("home")
 });
 
 app.get("/contact", (req, res, next) => {
-  res.sendFile(__dirname + "/views/contact.html");
+    res.render("contact")
 });
 
 app.get("/product1", (req, res, next) => {
