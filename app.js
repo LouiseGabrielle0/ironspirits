@@ -2,8 +2,8 @@ console.log("hello world! :)");
 
 const express = require("express");
 const app = express();
-const Product = require('./models/Product.model')
-const mongoose = require('mongoose');
+const Product = require("./models/Product.model");
+const mongoose = require("mongoose");
 
 // these two lines must be after the lines to get the express application.
 // These lines set configuation for handlers
@@ -19,8 +19,6 @@ mongoose
   )
   .catch((err) => console.error("errrror error error errror", err));
 
-
-
 //configure a directory for static files
 app.use(express.static("public")); // we can use this to give the public access to images - they use the url localhost:3000/images/filename.png
 
@@ -33,29 +31,19 @@ app.use(express.static("public")); // we can use this to give the public access 
 app.get("/about", (req, res, next) => {
   // console.log(req.url)
   console.log("A request on the ABOUT page was received :)");
- // res.sendFile(__dirname + "/views/about.html"); // Sends the HTML file
- res.render("about") //using handlebar to render the layout then add the details 
+  // res.sendFile(__dirname + "/views/about.html"); // Sends the HTML file
+  res.render("about"); //using handlebar to render the layout then add the details
 });
-
 
 //each of these are called a route (app.get)
 app.get("/", (req, res, next) => {
   // console.log(req.url)
   console.log("A request on the HOME page was received :)");
-  res.render("home")
+  res.render("home");
 });
 
 app.get("/contact", (req, res, next) => {
-    res.render("contact")
-});
-
-app.get("/productList", (req, res, next) => {
- Product.find() // get all the products from the db
- .then(productsArray => { // if req successful -> render the view and
-  res.render("productList", {products: productsArray}) //create an object of arrays (the result) and send the to the productList page
- })
- .catch(err => console.log("error getting products from db" , err));
- 
+  res.render("contact");
 });
 
 app.get("/product1", (req, res, next) => {
@@ -99,63 +87,88 @@ app.get("/product3", (req, res, next) => {
 //     };
 //     res.render("product", data);
 //   });
-  
+
 // Pulling from the db
-  // app.get("/watercolour-frog", (req, res, next) => {
-  //   Product.findOne({title: "watercolour-frog"})
-  //   .then(productDetails => {
-  //     res.render("product", productDetails);
-  //   })
-  //   .catch(error => console.log("error getting products from DB", error))
-  // });
+// app.get("/watercolour-frog", (req, res, next) => {
+//   Product.findOne({title: "watercolour-frog"})
+//   .then(productDetails => {
+//     res.render("product", productDetails);
+//   })
+//   .catch(error => console.log("error getting products from DB", error))
+// });
 
-  // app.get("/colour-frog-print", (req, res, next) => {
-  //   Product.findOne({title: "colour-frog-print"})
-  //   .then(productDetails => {
-  //     res.render("product", productDetails);
-  //   })
-  //   .catch(error => console.log("error getting products from DB", error))
-  // });
+// app.get("/colour-frog-print", (req, res, next) => {
+//   Product.findOne({title: "colour-frog-print"})
+//   .then(productDetails => {
+//     res.render("product", productDetails);
+//   })
+//   .catch(error => console.log("error getting products from DB", error))
+// });
 
-  // app.get("/black-and-white-frog-print", (req, res, next) => {
-  //   Product.findOne({title: "black-and-white-frog-print"})
-  //   .then(productDetails => {
-  //     res.render("product", productDetails);
-  //   })
-  //   .catch(error => console.log("error getting products from DB", error))
-  // });
-  
-  // app.get("/multi-frog-print", (req, res, next) => {
-  //   Product.findOne({title: "multi-frog-print"})
-  //   .then(productDetails => {
-  //     res.render("product", productDetails);
-  //   })
-  //   .catch(error => console.log("error getting products from DB", error))
-  // });
-  
-  // app.get("/multi-frog-print", (req, res, next) => {
-  //   Product.findOne({title: "multi-frog-print"})
-  //   .then(productDetails => {
-  //     res.render("product", productDetails);
-  //   })
-  //   .catch(error => console.log("error getting products from DB", error))
-  // });
+// app.get("/black-and-white-frog-print", (req, res, next) => {
+//   Product.findOne({title: "black-and-white-frog-print"})
+//   .then(productDetails => {
+//     res.render("product", productDetails);
+//   })
+//   .catch(error => console.log("error getting products from DB", error))
+// });
+
+// app.get("/multi-frog-print", (req, res, next) => {
+//   Product.findOne({title: "multi-frog-print"})
+//   .then(productDetails => {
+//     res.render("product", productDetails);
+//   })
+//   .catch(error => console.log("error getting products from DB", error))
+// });
+
+// app.get("/multi-frog-print", (req, res, next) => {
+//   Product.findOne({title: "multi-frog-print"})
+//   .then(productDetails => {
+//     res.render("product", productDetails);
+//   })
+//   .catch(error => console.log("error getting products from DB", error))
+// });
 
 app.get("/products", (req, res, next) => {
-  res.render("productList")
-})
+  res.render("productList");
+});
 
-  // A GENERIC ROUTE
-  app.get("/products/:productId", (req, res, next) => {
-    Product.findById(req.params.productId)
-    .then(productDetails => {
+// A GENERIC ROUTE
+app.get("/products/:productId", (req, res, next) => {
+  Product.findById(req.params.productId)
+    .then((productDetails) => {
       res.render("product", productDetails);
     })
-    .catch(error => console.log("error getting products from DB", error))
-  });
+    .catch((error) => console.log("error getting products from DB", error));
+});
 
+// A GENERIC ROUTE TO AN ARRAY TO DISPLAY A LIST OF ITEMS WITH URLS
+// app.get("/productList", (req, res, next) => {
+//  Product.find() // get all the products from the db
+//  .then(productsArray => { // if req successful -> render the view and
+//   res.render("productList", {products: productsArray}) //create an object of arrays (the result) and send the to the productList page
+//  })
+//  .catch(err => console.log("error getting products from db" , err));
 
+// });
 
+// SAME AS ABOVE BUT WITH A QUERY
+app.get("/productList", (req, res, next) => {
+  let filter; // creating a filter so that we can have a full list or searched list (used for the if statement and find arguement)
+  const max = req.query.maxPrice; // with a query in the url productList?maxPrice=
+  if (max === undefined) {
+    filter = {};
+  } else {
+    filter = { price: { $lte: max } };
+  }
+
+  Product.find(filter)
+    .then((productsArray) => {
+      // if req successful -> render the view and
+      res.render("productList", { products: productsArray }); //create an object of arrays (the result) and send the to the productList page
+    })
+    .catch((err) => console.log("error getting products from db", err));
+});
 
 // tell express to start listening and we can define a port. Can have two arguements, first a port, second a function to action if successful
 app.listen(3000, () => {
