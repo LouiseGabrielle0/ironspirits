@@ -1,9 +1,9 @@
-console.log("hello world! :)");
-
 const express = require("express");
-const app = express();
 const Product = require("./models/Product.model");
 const mongoose = require("mongoose");
+const bodyParser = require('body-parser'); // so you can take data from the body
+const app = express(); 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // these two lines must be after the lines to get the express application.
 // These lines set configuation for handlers
@@ -169,6 +169,22 @@ app.get("/productList", (req, res, next) => {
     })
     .catch((err) => console.log("error getting products from db", err));
 });
+
+app.post("/new", (req, res, next) => {
+// console.log("creating new product....")
+// console.log(req.body)
+const newProduct = {
+  title: req.body.title,
+  price: req.body.price,
+  images: req.body.imgScr
+}
+Product.create(newProduct)
+.then(newProduct => {
+  res.redirect("/productList/") //redirect to the products page
+  console.log("new product was created" + newProduct)
+})
+.catch(err => console.log("error creating new product" + err))
+})
 
 // tell express to start listening and we can define a port. Can have two arguements, first a port, second a function to action if successful
 app.listen(3000, () => {

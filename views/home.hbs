@@ -3,3 +3,28 @@
 <p>FROOOOGS</p>
 <p>FROGS!</p>
 <img src="./images/frogs2.PNG" alt="we are frogs" />
+
+<div id="search-form" class = "form-container">
+    <h4>Search</h4>
+    <br>
+    <form action="/productList" method="GET">
+    <label>Maximum Price:
+        <input type="number" name="maxPrice" min="4000">  <!--the name we use here allows us to enter the details into the url for the search query -->
+    </label>   
+     <button>Submit</button>
+    </form>
+</div>
+
+<div id="new-product-form" class="form-container">
+    <h4> Submit your frog art to sell</h4>
+    <br>
+    <form action="/new" method="POST">
+        <label>
+            Name: <input type="text" name="title">
+            Price: <input type="number" min="10" name="price">
+            File <input type="file" name="imgScr">
+        </label>
+        <button>Submit</button>
+    </form>
+
+</div>
