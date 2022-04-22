@@ -91,46 +91,56 @@ app.get("/product3", (req, res, next) => {
 //     res.render("product", data);
 //   });
   
+// Pulling from the db
+  // app.get("/watercolour-frog", (req, res, next) => {
+  //   Product.findOne({title: "watercolour-frog"})
+  //   .then(productDetails => {
+  //     res.render("product", productDetails);
+  //   })
+  //   .catch(error => console.log("error getting products from DB", error))
+  // });
 
-  app.get("/watercolour-frog", (req, res, next) => {
-    Product.findOne({title: "watercolour-frog"})
-    .then(productDetails => {
-      res.render("product", productDetails);
-    })
-    .catch(error => console.log("error getting products from DB", error))
-  });
+  // app.get("/colour-frog-print", (req, res, next) => {
+  //   Product.findOne({title: "colour-frog-print"})
+  //   .then(productDetails => {
+  //     res.render("product", productDetails);
+  //   })
+  //   .catch(error => console.log("error getting products from DB", error))
+  // });
 
-  app.get("/colour-frog-print", (req, res, next) => {
-    Product.findOne({title: "colour-frog-print"})
-    .then(productDetails => {
-      res.render("product", productDetails);
-    })
-    .catch(error => console.log("error getting products from DB", error))
-  });
-
-  app.get("/black-and-white-frog-print", (req, res, next) => {
-    Product.findOne({title: "black-and-white-frog-print"})
-    .then(productDetails => {
-      res.render("product", productDetails);
-    })
-    .catch(error => console.log("error getting products from DB", error))
-  });
+  // app.get("/black-and-white-frog-print", (req, res, next) => {
+  //   Product.findOne({title: "black-and-white-frog-print"})
+  //   .then(productDetails => {
+  //     res.render("product", productDetails);
+  //   })
+  //   .catch(error => console.log("error getting products from DB", error))
+  // });
   
-  app.get("/multi-frog-print", (req, res, next) => {
-    Product.findOne({title: "multi-frog-print"})
-    .then(productDetails => {
-      res.render("product", productDetails);
-    })
-    .catch(error => console.log("error getting products from DB", error))
-  });
+  // app.get("/multi-frog-print", (req, res, next) => {
+  //   Product.findOne({title: "multi-frog-print"})
+  //   .then(productDetails => {
+  //     res.render("product", productDetails);
+  //   })
+  //   .catch(error => console.log("error getting products from DB", error))
+  // });
   
-  app.get("/multi-frog-print", (req, res, next) => {
-    Product.findOne({title: "multi-frog-print"})
+  // app.get("/multi-frog-print", (req, res, next) => {
+  //   Product.findOne({title: "multi-frog-print"})
+  //   .then(productDetails => {
+  //     res.render("product", productDetails);
+  //   })
+  //   .catch(error => console.log("error getting products from DB", error))
+  // });
+
+  // A GENERIC ROUTE
+  app.get("/products/:productId", (req, res, next) => {
+    Product.findById(req.params.productId)
     .then(productDetails => {
       res.render("product", productDetails);
     })
     .catch(error => console.log("error getting products from DB", error))
   });
+
 
 
 
