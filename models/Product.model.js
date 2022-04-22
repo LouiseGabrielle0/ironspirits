@@ -22,7 +22,7 @@ const productSchema = new Schema ({
     enum: ["watercolour", "oil", "print", "blackandwhite", "colour", "limited edition"]},
     imgScr: {
         type: String,
-        default: 'images/placeholder.pgn'
+        default: 'images/placeholder.png'
 }
 })
 

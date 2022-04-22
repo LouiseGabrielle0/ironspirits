@@ -176,7 +176,7 @@ app.post("/new", (req, res, next) => {
 const newProduct = {
   title: req.body.title,
   price: req.body.price,
-  images: req.body.imgScr
+  imgScr: req.body.imgScr
 }
 Product.create(newProduct)
 .then(newProduct => {

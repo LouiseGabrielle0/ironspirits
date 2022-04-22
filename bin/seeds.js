@@ -21,10 +21,12 @@ const products = [
   {
     title: "colour-frog-print",
     price: 8465,
+    imgScr: "watercolour-frog.jpg"
   },
   {
     title: "black-and-white-frog-print",
     price: 5545,
+    imgScr: "posh-frog.jpg"
   },
   {
     title: "multi-frog-print",
