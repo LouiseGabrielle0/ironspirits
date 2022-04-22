@@ -49,6 +49,15 @@ app.get("/contact", (req, res, next) => {
     res.render("contact")
 });
 
+app.get("/productList", (req, res, next) => {
+ Product.find() // get all the products from the db
+ .then(productsArray => { // if req successful -> render the view and
+  res.render("productList", {products: productsArray}) //create an object of arrays (the result) and send the to the productList page
+ })
+ .catch(err => console.log("error getting products from db" , err));
+ 
+});
+
 app.get("/product1", (req, res, next) => {
   res.sendFile(__dirname + "/views/frog-art-1.html");
 });
@@ -131,6 +140,10 @@ app.get("/product3", (req, res, next) => {
   //   })
   //   .catch(error => console.log("error getting products from DB", error))
   // });
+
+app.get("/products", (req, res, next) => {
+  res.render("productList")
+})
 
   // A GENERIC ROUTE
   app.get("/products/:productId", (req, res, next) => {
